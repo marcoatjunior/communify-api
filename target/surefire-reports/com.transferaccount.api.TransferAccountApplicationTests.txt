@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.transferaccount.api.TransferAccountApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 5.278 s <<< FAILURE! - in com.transferaccount.api.TransferAccountApplicationTests
+testCreateAndFindANewAccount(com.transferaccount.api.TransferAccountApplicationTests)  Time elapsed: 0.069 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.transferaccount.api.TransferAccountApplicationTests.testCreateAndFindANewAccount(TransferAccountApplicationTests.java:39)
+
+testCreateAndFindANewMovement(com.transferaccount.api.TransferAccountApplicationTests)  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.transferaccount.api.TransferAccountApplicationTests.testCreateAndFindANewMovement(TransferAccountApplicationTests.java:55)
+
+testCreateAndFindANewCustomer(com.transferaccount.api.TransferAccountApplicationTests)  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.transferaccount.api.TransferAccountApplicationTests.testCreateAndFindANewCustomer(TransferAccountApplicationTests.java:28)
+
