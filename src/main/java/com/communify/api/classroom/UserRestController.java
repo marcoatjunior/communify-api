@@ -15,7 +15,7 @@ public class UserRestController {
      * @return Students information based on email
      * @throws IOException If had an connection error
      */
-    @CrossOrigin(origins = {"http://localhost:8000", "https://localhost:8100", "http://localhost:8200"})
+    @CrossOrigin
     @GetMapping(value = "", produces = "application/json")
     public StringBuffer findStudentByEmail(@RequestParam String email) throws Exception {
         return (new RequestController()).create("https://classroom.googleapis.com/v1/userProfiles/" + email);

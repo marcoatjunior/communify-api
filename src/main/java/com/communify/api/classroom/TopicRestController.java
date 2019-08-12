@@ -13,7 +13,7 @@ public class TopicRestController {
      * @return a list of courseWorks
      * @throws Exception If had an connection error
      */
-    @CrossOrigin(origins = {"http://localhost:8000", "https://localhost:8100", "http://localhost:8200"})
+    @CrossOrigin
     @GetMapping(value = "", produces = "application/json")
     public StringBuffer listTopics(@RequestParam String topicId) throws Exception {
         return (new RequestController()).create("https://classroom.googleapis.com/v1/courses/" + topicId + "/topics");
@@ -24,7 +24,7 @@ public class TopicRestController {
      * @return a list of courseWorks
      * @throws Exception If had an connection error
      */
-    @CrossOrigin(origins = {"http://localhost:8000", "https://localhost:8100", "http://localhost:8200"})
+    @CrossOrigin
     @GetMapping(value = "/topic", produces = "application/json")
     public StringBuffer getTopic(@RequestParam String courseId, @RequestParam String topicId) throws Exception {
         return (new RequestController()).create("https://classroom.googleapis.com/v1/courses/" + courseId + "/topics/" + topicId);

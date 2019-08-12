@@ -43,7 +43,7 @@ public class AuthRestController {
 	 * Get the access token
 	 * @return An authorized access token string.
 	 */
-	@CrossOrigin(origins = {"http://localhost:8000", "https://localhost:8100", "http://localhost:8200"})
+	@CrossOrigin
 	@GetMapping("")
 	public boolean allowAccess() {
 		try {
