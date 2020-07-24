@@ -1,2 +1,6 @@
-com/communify/api/classroom/RequestController.class
+com/communify/api/model/User.class
 com/communify/api/CommunifyApplication.class
+com/communify/api/dto/TaskDTO.class
+com/communify/api/rest/TaskRest.class
+com/communify/api/enumerator/TaskOriginEnum.class
+com/communify/api/dto/UserDTO.class

@@ -1,7 +1,6 @@
-/home/dbserver/Documentos/Projects/Communify/api/src/main/java/com/communify/api/classroom/TopicRestController.java
-/home/dbserver/Documentos/Projects/Communify/api/src/main/java/com/communify/api/classroom/UserRestController.java
-/home/dbserver/Documentos/Projects/Communify/api/src/main/java/com/communify/api/classroom/WorkRestController.java
-/home/dbserver/Documentos/Projects/Communify/api/src/main/java/com/communify/api/classroom/AuthRestController.java
-/home/dbserver/Documentos/Projects/Communify/api/src/main/java/com/communify/api/classroom/CourseRestController.java
-/home/dbserver/Documentos/Projects/Communify/api/src/main/java/com/communify/api/CommunifyApplication.java
-/home/dbserver/Documentos/Projects/Communify/api/src/main/java/com/communify/api/classroom/RequestController.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/rest/TaskRest.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/dto/TaskDTO.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/enumerator/TaskOriginEnum.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/CommunifyApplication.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/dto/UserDTO.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/model/User.java
