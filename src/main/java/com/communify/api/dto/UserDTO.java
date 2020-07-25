@@ -11,4 +11,5 @@ public class UserDTO {
     private String name;
     private String classroomEmailAddress;
     private String moodleEmailAddress;
+    private String urlPhoto;
 }
