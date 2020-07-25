@@ -12,24 +12,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.communify.api.dto.UserDTO;
-import com.communify.api.service.UserService;
+import com.communify.api.service.IUserService;
+
+import lombok.Getter;
 
 @RestController
 @RequestMapping("/users")
+@Getter
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private IUserService userService;
     
     @CrossOrigin
     @GetMapping(produces = "application/json")
     public UserDTO findByClassroom(@RequestParam("email") String email) {
-        return modelToDTO(userService.findByClassroom(email));
+        return modelToDTO(getUserService().findByClassroom(email));
     }
 
     @CrossOrigin
     @PostMapping(produces = "application/json")
     public UserDTO save(@RequestBody UserDTO userDTO) {
-        return modelToDTO(userService.save(userDTO));
+        return modelToDTO(getUserService().save(userDTO));
     }
 }
