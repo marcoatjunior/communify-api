@@ -17,8 +17,8 @@ public class CourseWorkMapper {
     private CourseWorkMapper() {
     }
     
-    public static List<CourseWorkDTO> modelsToDTOs(List<CourseWork> listCouseWorks) {
-        return ofNullable(listCouseWorks)
+    public static List<CourseWorkDTO> modelsToDTOs(List<CourseWork> listCourseWorks) {
+        return ofNullable(listCourseWorks)
             .map(courseWorks -> courseWorks.stream()
                 .map(CourseWorkMapper::modelToDTO)
                 .collect(toList())).orElse(emptyList());

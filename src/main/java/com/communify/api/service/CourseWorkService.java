@@ -28,10 +28,10 @@ public class CourseWorkService implements ICourseWorkService {
     public List<CourseWork> list(String accessToken) {
         try {
             Classroom classroom = getClassroomService().instance(accessToken);
-            List<Course> listCourses = searchCourses(classroom);
-            List<String> courseIds = mapCourseIds(listCourses);
-            List<ListCourseWorkResponse> listCourseWorkResponse = mapCourseWorksByCourse(classroom, courseIds);
-            return listCouseWorks(listCourseWorkResponse);
+            List<Course> coursesList = searchCourses(classroom);
+            List<String> coursesIds = mapCourseIds(coursesList);
+            List<ListCourseWorkResponse> courseWorkResponseList = mapCourseWorksByCourse(classroom, coursesIds);
+            return courseWorksList(courseWorkResponseList);
         } catch (Exception e) {
             e.getStackTrace();
         }
@@ -59,13 +59,13 @@ public class CourseWorkService implements ICourseWorkService {
         return new ListCourseWorkResponse();
     }
     
-    private List<CourseWork> listCouseWorks(List<ListCourseWorkResponse> response) {
-        List<CourseWork> listCourseWorks = response.stream()
+    private List<CourseWork> courseWorksList(List<ListCourseWorkResponse> response) {
+        List<CourseWork> courseWorksList = response.stream()
             .filter(courseWorksResponse -> !isNull(courseWorksResponse))
-            .map(listCourseWorkResponse -> listCourseWorkResponse.getCourseWork())
+            .map(courseWorkResponseList -> courseWorkResponseList.getCourseWork())
             .filter(courseWorks -> !isNull(courseWorks))
             .flatMap(courseWorks -> courseWorks.stream())
             .collect(toList());
-        return listCourseWorks;
+        return courseWorksList;
     }
 }
