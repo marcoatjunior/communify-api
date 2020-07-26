@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.communify.api.model.Lesson;
-import com.communify.api.model.Student;
 import com.communify.api.repository.StudentRepository;
 
 import lombok.Getter;
@@ -24,12 +23,11 @@ public class LessonService implements ILessonService {
     
     @Override
     public List<Lesson> list(String email) {
-        Iterable<Student> listAaa = getStudentRepository().findAll();
-        Student student = getStudentRepository().findByEmail(email);
-        return student.getStudentCourses().stream()
-            .map(userCourse -> userCourse.getCourse())
-            .flatMap(course -> course.getLessons().stream())
-            .collect(toList());
+        return getStudentRepository().findByEmail(email)
+            .getStudentCourses().stream()
+                .map(userCourse -> userCourse.getCourse())
+                .flatMap(course -> course.getLessons().stream())
+                .collect(toList());
     }
 
 }

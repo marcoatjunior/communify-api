@@ -1,6 +1,8 @@
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/service/LessonService.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/mapper/LessonMapper.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/model/Course.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/service/IUserService.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/enumerator/TaskOriginEnum.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/builder/GenericBuilder.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/service/IClassroomService.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/repository/LessonAttemptRepository.java
@@ -18,13 +20,12 @@
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/dto/UserDTO.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/model/LessonAttempt.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/service/ICourseWorkService.java
-/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/dto/CourseWorkDTO.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/repository/LessonRepository.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/mapper/UserMapper.java
-/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/enumerator/CourseWorkOriginEnum.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/model/Student.java
-/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/controller/CourseWorkController.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/service/NotificationService.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/dto/TaskDTO.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/controller/TaskController.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/model/StudentCourse.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/controller/NotificationController.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/service/CourseWorkService.java

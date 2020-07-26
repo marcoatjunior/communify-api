@@ -1,20 +1,48 @@
 package com.communify.api.helper;
 
+import static java.time.Instant.ofEpochSecond;
+import static java.time.LocalDateTime.ofInstant;
+import static java.time.ZoneId.systemDefault;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+
 import com.google.api.services.classroom.model.Date;
 
 public class DateHelper {
+    
+    private static final String DEFAULT_DATE = "dd/MM/yyyy";
 
-    public static String transformDateToString(Date dueDate) {
+    public static java.util.Date transform(Date date) {
+        return cast(build(date.getDay(), date.getMonth(), date.getYear()));
+    }
+    
+    public static java.util.Date transform(Long time) {
+        LocalDateTime date = ofInstant(ofEpochSecond(time), systemDefault());
+        return cast(build(date.getDayOfMonth(), date.getMonthValue(), date.getYear()));
+    }
+    
+    public static java.util.Date cast(String date) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DEFAULT_DATE);
+            return simpleDateFormat.parse(date);
+        }catch (Exception e) {
+            e.getStackTrace();
+        }
+        return new java.util.Date();
+    }
+    
+    private static String build(Integer day, Integer month, Integer year) {
         return new StringBuilder()
-            .append(dueDate.getDay())
+            .append(day)
             .append("/")
-            .append(setLeftZeroToMonth(dueDate.getMonth()))
+            .append(setZero(month))
             .append("/")
-            .append(dueDate.getYear())
+            .append(year)
             .toString();
     }
     
-    private static String setLeftZeroToMonth(Integer month) {
+    private static String setZero(Integer month) {
         return month < 10 ? "0" + month.toString() : month.toString();
     }
 }

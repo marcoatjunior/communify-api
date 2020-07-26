@@ -1,17 +1,19 @@
 package com.communify.api.dto;
 
-import com.communify.api.enumerator.CourseWorkOriginEnum;
+import java.util.Date;
+
+import com.communify.api.enumerator.TaskOriginEnum;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CourseWorkDTO {
+public class TaskDTO {
 
     private String id;
     private String description;
     private String link;
-    private String returnDate;
-    private CourseWorkOriginEnum origin;
+    private Date returnDate;
+    private TaskOriginEnum origin;
 }

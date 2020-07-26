@@ -1,12 +1,12 @@
 package com.communify.api.service;
 
 import static com.communify.api.builder.GenericBuilder.of;
-import static com.communify.api.helper.DateHelper.transformDateToString;
+import static com.communify.api.helper.DateHelper.transform;
 import static java.time.LocalDate.now;
-import static java.time.LocalDate.parse;
-import static java.time.format.DateTimeFormatter.ofPattern;
+import static java.time.ZoneId.systemDefault;
 import static java.time.temporal.ChronoUnit.DAYS;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,6 @@ import lombok.Getter;
 public class NotificationService implements INotificationService {
     
     private static final Long NUMBER_OF_DAYS_IN_WEEK = 7L;
-    private static final String DATE_PATTERN_FORMAT = "dd/MM/yyyy";
     private static final String DEFAULT_SUBJECT_SENDER = "communify@unilasalle.edu.br";
     private static final String DEFAULT_SUBJECT_MESSAGE = "Communify informa: Tarefa com entrega nesta semana!";
 
@@ -43,7 +42,11 @@ public class NotificationService implements INotificationService {
     }
     
     private Long daysBetween(Date dueDate) {
-        return DAYS.between(now(), parse(transformDateToString(dueDate), ofPattern(DATE_PATTERN_FORMAT)));
+        return DAYS.between(now(), convertToLocalDate(transform(dueDate)));
+    }
+    
+    private LocalDate convertToLocalDate(java.util.Date date) {
+        return date.toInstant().atZone(systemDefault()).toLocalDate();
     }
     
     private void shoot(String receiver, String link) {

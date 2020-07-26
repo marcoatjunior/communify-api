@@ -1,9 +1,11 @@
 package com.communify.api.controller;
 
+import static com.communify.api.mapper.CourseWorkMapper.modelsToDTOs;
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Stream.concat;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.communify.api.dto.CourseWorkDTO;
-import com.communify.api.mapper.CourseWorkMapper;
+import com.communify.api.dto.TaskDTO;
 import com.communify.api.mapper.LessonMapper;
 import com.communify.api.service.ICourseWorkService;
 import com.communify.api.service.ILessonService;
@@ -22,9 +23,9 @@ import com.communify.api.service.ILessonService;
 import lombok.Getter;
 
 @RestController
-@RequestMapping("/courseWorks")
+@RequestMapping("/tasks")
 @Getter
-public class CourseWorkController {
+public class TaskController {
 
     @Autowired
     private ICourseWorkService courseWorkService;
@@ -34,14 +35,12 @@ public class CourseWorkController {
     
     @CrossOrigin
     @GetMapping(produces = "application/json")
-    public List<CourseWorkDTO> list(@RequestHeader("Authorization") String accessToken, 
+    public List<TaskDTO> list(@RequestHeader("Authorization") String accessToken, 
             @RequestParam("email") String email) {
-        List<CourseWorkDTO> courseWorkDTOsClassroom = CourseWorkMapper.
-                modelsToDTOs(getCourseWorkService().list(accessToken));
-        List<CourseWorkDTO> courseWorkDTOsMoodle = LessonMapper.
-                modelsToDTOs(getLessonService().list(email));
-        return Stream.concat(courseWorkDTOsClassroom.stream(), 
-                courseWorkDTOsMoodle.stream()).collect(toList());
+        List<TaskDTO> classroomDTOs = modelsToDTOs(getCourseWorkService().list(accessToken));
+        List<TaskDTO> moodleDTOs = LessonMapper.modelsToDTOs(getLessonService().list(email));
+        return concat(classroomDTOs.stream(), moodleDTOs.stream())
+                .sorted(comparing(TaskDTO::getReturnDate).reversed()).collect(toList());
     }
     
 }

@@ -5,23 +5,23 @@ import java.util.List;
 import lombok.Getter;
 
 @Getter
-public enum CourseWorkOriginEnum {
+public enum TaskOriginEnum {
 
     Classroom("CLASSROOM"), Moodle("MOODLE");
 
     private String ambienteVirtual;
 
-    private CourseWorkOriginEnum(String ambienteVirtual) {
+    private TaskOriginEnum(String ambienteVirtual) {
         this.ambienteVirtual = ambienteVirtual;
     }
 
-    public static List<CourseWorkOriginEnum> getAll() {
+    public static List<TaskOriginEnum> getAll() {
         return asList(values());
     }
 
-    public static CourseWorkOriginEnum get(String ambienteVirtual) {
+    public static TaskOriginEnum get(String ambienteVirtual) {
         if (ambienteVirtual != null && ambienteVirtual.length() != 0) {
-            for (CourseWorkOriginEnum obj : getAll()) {
+            for (TaskOriginEnum obj : getAll()) {
                 if (obj.ambienteVirtual.equals(ambienteVirtual)) {
                     return obj;
                 }
