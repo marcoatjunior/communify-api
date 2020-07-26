@@ -1,6 +1,6 @@
 package com.communify.api.service;
 
-public interface INotificationService {
+public interface ITaskNotificationService {
 
     void send(String accessToken, String email);
 }

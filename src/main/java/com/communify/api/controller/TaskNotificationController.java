@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.communify.api.service.INotificationService;
+import com.communify.api.service.ITaskNotificationService;
 
 import lombok.Getter;
 
 @RestController
 @RequestMapping("/notifications")
 @Getter
-public class NotificationController {
+public class TaskNotificationController {
 
     @Autowired
-    private INotificationService notificationService;
+    private ITaskNotificationService notificationService;
     
     @CrossOrigin
     @GetMapping(produces = "application/json")

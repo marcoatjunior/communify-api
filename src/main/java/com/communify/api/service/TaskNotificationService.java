@@ -14,6 +14,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.communify.api.model.Lesson;
 import com.google.api.services.classroom.model.CourseWork;
 import com.google.api.services.classroom.model.Date;
 
@@ -21,7 +22,7 @@ import lombok.Getter;
 
 @Service
 @Getter
-public class NotificationService implements INotificationService {
+public class TaskNotificationService implements ITaskNotificationService {
     
     private static final Long NUMBER_OF_DAYS_IN_WEEK = 7L;
     private static final String DEFAULT_SUBJECT_SENDER = "communify@unilasalle.edu.br";
@@ -31,18 +32,37 @@ public class NotificationService implements INotificationService {
     private ICourseWorkService courseWorkService;
     
     @Autowired
+    private ILessonService lessonService;
+    
+    @Autowired
     private JavaMailSender emailSender;
 
     @Override
     public void send(String accessToken, String email) {
-        List<CourseWork> listCourseWork = getCourseWorkService().list(accessToken);
-        listCourseWork.stream()
+        sendClassroom(accessToken, email);
+        sendMoodle(email);
+    }
+
+    private void sendClassroom(String accessToken, String email) {
+        List<CourseWork> courseWorksList = getCourseWorkService().list(accessToken);
+        courseWorksList.stream()
             .filter(courseWork -> daysBetween(courseWork.getDueDate()) <= NUMBER_OF_DAYS_IN_WEEK)
             .forEach(courseWork -> shoot(email, courseWork.getAlternateLink()));
     }
     
     private Long daysBetween(Date dueDate) {
         return DAYS.between(now(), convertToLocalDate(transform(dueDate)));
+    }
+    
+    private void sendMoodle(String email) {
+        List<Lesson> lessonsList = getLessonService().list(email);
+        lessonsList.stream()
+            .filter(lesson -> daysBetween(lesson.getDeadline()) <= NUMBER_OF_DAYS_IN_WEEK)
+            .forEach(lesson -> shoot(email, lesson.getActivityLink()));
+    }
+    
+    private Long daysBetween(Long time) {
+        return DAYS.between(now(), convertToLocalDate(transform(time)));
     }
     
     private LocalDate convertToLocalDate(java.util.Date date) {
