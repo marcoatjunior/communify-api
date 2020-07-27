@@ -29,6 +29,7 @@
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/service/TaskNotificationService.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/controller/TaskController.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/model/StudentCourse.java
+/home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/model/CourseWork.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/service/CourseWorkService.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/controller/TermController.java
 /home/dbs-note-594l/Documentos/Pessoal/TCC/communify-api/src/main/java/com/communify/api/service/TermService.java

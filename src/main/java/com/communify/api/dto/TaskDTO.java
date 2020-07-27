@@ -15,7 +15,7 @@ public class TaskDTO {
 
     private String id;
     private String description;
-    private String courseName;
+    private String course;
     private String link;
     private Date returnDate;
     private TaskOriginEnum origin;

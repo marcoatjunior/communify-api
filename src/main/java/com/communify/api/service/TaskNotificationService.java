@@ -22,9 +22,9 @@ import com.communify.api.contracts.IUserService;
 import com.communify.api.dto.TaskDTO;
 import com.communify.api.mapper.CourseWorkMapper;
 import com.communify.api.mapper.LessonMapper;
+import com.communify.api.model.CourseWork;
 import com.communify.api.model.Lesson;
 import com.communify.api.model.User;
-import com.google.api.services.classroom.model.CourseWork;
 import com.google.api.services.classroom.model.Date;
 
 import lombok.Getter;

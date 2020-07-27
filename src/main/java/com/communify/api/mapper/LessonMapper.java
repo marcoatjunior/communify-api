@@ -32,6 +32,7 @@ public class LessonMapper {
         return of(TaskDTO::new)
             .with(TaskDTO::setId, lesson.getId().toString())
             .with(TaskDTO::setDescription, lesson.getName())
+            .with(TaskDTO::setCourse, lesson.getCourse().getFullname())
             .with(TaskDTO::setLink, lesson.getActivityLink())
             .with(TaskDTO::setReturnDate, transform(lesson.getDeadline()))
             .with(TaskDTO::setOrigin, TaskOriginEnum.Moodle)

@@ -2,7 +2,7 @@ package com.communify.api.contracts;
 
 import java.util.List;
 
-import com.google.api.services.classroom.model.CourseWork;
+import com.communify.api.model.CourseWork;
 
 public interface ICourseWorkService {
 

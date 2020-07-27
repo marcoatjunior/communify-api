@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.communify.api.dto.TaskDTO;
 import com.communify.api.enumerator.TaskOriginEnum;
-import com.google.api.services.classroom.model.CourseWork;
+import com.communify.api.model.CourseWork;
 
 public class CourseWorkMapper {
 
@@ -32,6 +32,7 @@ public class CourseWorkMapper {
         return of(TaskDTO::new)
             .with(TaskDTO::setId, courseWork.getId())
             .with(TaskDTO::setDescription, courseWork.getTitle())
+            .with(TaskDTO::setCourse, courseWork.getCourse().getName())
             .with(TaskDTO::setLink, courseWork.getAlternateLink())
             .with(TaskDTO::setReturnDate, transform(courseWork.getDueDate()))
             .with(TaskDTO::setOrigin, TaskOriginEnum.Classroom)

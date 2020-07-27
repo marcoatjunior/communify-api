@@ -21,6 +21,7 @@ com/communify/api/mapper/UserMapper.class
 com/communify/api/mapper/LessonMapper.class
 com/communify/api/model/LessonAttempt.class
 com/communify/api/service/UserService.class
+com/communify/api/model/CourseWork.class
 com/communify/api/enumerator/TaskOriginEnum.class
 com/communify/api/contracts/IUserService.class
 com/communify/api/model/Course.class
