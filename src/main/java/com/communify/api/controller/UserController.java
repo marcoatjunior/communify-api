@@ -2,6 +2,7 @@ package com.communify.api.controller;
 
 import static com.communify.api.mapper.UserMapper.dtoToModel;
 import static com.communify.api.mapper.UserMapper.modelToDTO;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,13 +27,13 @@ public class UserController {
     private IUserService userService;
     
     @CrossOrigin
-    @GetMapping(produces = "application/json")
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     public UserDTO findByClassroom(@RequestParam("email") String email) {
         return modelToDTO(getUserService().findByClassroom(email));
     }
 
     @CrossOrigin
-    @PostMapping(produces = "application/json")
+    @PostMapping(produces = APPLICATION_JSON_VALUE)
     public UserDTO save(@RequestBody UserDTO userDTO) {
         return modelToDTO(getUserService().save(dtoToModel(userDTO)));
     }

@@ -1,5 +1,7 @@
 package com.communify.api.controller;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ public class TermController {
     private ITermService termService;
     
     @CrossOrigin
-    @GetMapping(produces = "application/json")
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     public void send(@RequestParam("email") String email, HttpServletRequest request) {
         getTermService().send(email, request.getRemoteAddr());
     }

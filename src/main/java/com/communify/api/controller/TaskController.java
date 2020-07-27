@@ -4,6 +4,7 @@ import static com.communify.api.mapper.CourseWorkToTaskMapper.modelsToDTOs;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class TaskController {
     private ILessonService lessonService;
     
     @CrossOrigin
-    @GetMapping(produces = "application/json")
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<TaskDTO> list(@RequestHeader("Authorization") String accessToken, 
             @RequestParam("email") String email) {
         List<TaskDTO> classroomDTOs = modelsToDTOs(getCourseWorkService().list(accessToken));
