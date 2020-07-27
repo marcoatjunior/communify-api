@@ -1,5 +1,6 @@
 package com.communify.api.controller;
 
+import static com.communify.api.mapper.UserMapper.dtoToModel;
 import static com.communify.api.mapper.UserMapper.modelToDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,6 @@ public class UserController {
     @CrossOrigin
     @PostMapping(produces = "application/json")
     public UserDTO save(@RequestBody UserDTO userDTO) {
-        return modelToDTO(getUserService().save(userDTO));
+        return modelToDTO(getUserService().save(dtoToModel(userDTO)));
     }
 }

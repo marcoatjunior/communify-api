@@ -33,12 +33,12 @@ public class DateHelper {
     
     public static Boolean compare(Date dueDate) {
         LocalDate date = convertToLocalDate(transform(dueDate));
-        return DAYS.between(now(), date) <= WEEK_DAYS && date.isAfter(now());
+        return date.isAfter(now()) && DAYS.between(now(), date) <= WEEK_DAYS;
     }
     
     public static Boolean compare(Long time) {
         LocalDate date = convertToLocalDate(transform(time));
-        return DAYS.between(now(), date) <= WEEK_DAYS && date.isAfter(now());
+        return date.isAfter(now()) && DAYS.between(now(), date) <= WEEK_DAYS;
     }
     
     private static java.util.Date cast(String date) {

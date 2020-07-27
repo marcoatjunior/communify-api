@@ -12,20 +12,20 @@ import com.communify.api.dto.TaskDTO;
 import com.communify.api.enumerator.TaskOriginEnum;
 import com.communify.api.model.CourseWork;
 
-public class CourseWorkMapper {
+public class CourseWorkToTaskMapper {
 
-    private CourseWorkMapper() {
+    private CourseWorkToTaskMapper() {
     }
     
     public static List<TaskDTO> modelsToDTOs(List<CourseWork> listCourseWorks) {
         return ofNullable(listCourseWorks)
             .map(courseWorks -> courseWorks.stream()
-                .map(CourseWorkMapper::modelToDTO)
+                .map(CourseWorkToTaskMapper::modelToDTO)
                 .collect(toList())).orElse(emptyList());
     }
 
     public static TaskDTO modelToDTO(CourseWork courseWork) {
-        return ofNullable(courseWork).map(CourseWorkMapper::convertModelToDTO).orElse(null);
+        return ofNullable(courseWork).map(CourseWorkToTaskMapper::convertModelToDTO).orElse(null);
     }
 
     private static TaskDTO convertModelToDTO(CourseWork courseWork) {

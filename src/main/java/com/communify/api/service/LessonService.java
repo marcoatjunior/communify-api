@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.communify.api.contracts.ILessonService;
 import com.communify.api.model.Lesson;
+import com.communify.api.repository.LessonRepository;
 import com.communify.api.repository.StudentRepository;
 
 import lombok.Getter;
@@ -23,6 +24,9 @@ public class LessonService implements ILessonService {
     @Autowired
     private StudentRepository studentRepository;
     
+    @Autowired
+    private LessonRepository lessonRepository;
+    
     @Override
     public List<Lesson> list(String email) {
         return getStudentRepository().findByEmail(email)
@@ -31,6 +35,11 @@ public class LessonService implements ILessonService {
                 .flatMap(course -> course.getLessons().stream())
                 .filter(lesson -> compare(lesson.getDeadline()))
                 .collect(toList());
+    }
+
+    @Override
+    public Lesson save(Lesson lesson) {
+        return getLessonRepository().save(lesson);
     }
 
 }

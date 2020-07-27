@@ -1,12 +1,9 @@
 package com.communify.api.service;
 
-import static com.communify.api.mapper.UserMapper.dtoToModel;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.communify.api.contracts.IUserService;
-import com.communify.api.dto.UserDTO;
 import com.communify.api.model.User;
 import com.communify.api.repository.UserRepository;
 
@@ -25,7 +22,7 @@ public class UserService implements IUserService {
     }
     
     @Override
-    public User save(UserDTO userDTO) {
-        return getUserRepository().save(dtoToModel(userDTO));
+    public User save(User user) {
+        return getUserRepository().save(user);
     }
 }

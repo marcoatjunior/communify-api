@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 import com.communify.api.contracts.ICourseWorkService;
 import com.communify.api.contracts.ILessonService;
 import com.communify.api.contracts.IMailService;
-import com.communify.api.contracts.ITaskNotificationService;
+import com.communify.api.contracts.INotificationService;
 import com.communify.api.contracts.IUserService;
 import com.communify.api.dto.TaskDTO;
-import com.communify.api.mapper.CourseWorkMapper;
-import com.communify.api.mapper.LessonMapper;
+import com.communify.api.mapper.CourseWorkToTaskMapper;
+import com.communify.api.mapper.LessonToTaskMapper;
 import com.communify.api.model.CourseWork;
 import com.communify.api.model.Lesson;
 import com.communify.api.model.User;
@@ -26,7 +26,7 @@ import lombok.Getter;
 
 @Service
 @Getter
-public class TaskNotificationService implements ITaskNotificationService {
+public class NotificationService implements INotificationService {
     
     private static final String TEMPLATE_FILE = "notification.vm";
     private static final String DEFAULT_SUBJECT_MESSAGE = "Tarefa com entrega nesta semana";
@@ -57,14 +57,14 @@ public class TaskNotificationService implements ITaskNotificationService {
         List<CourseWork> courseWorksList = getCourseWorkService().list(accessToken);
         courseWorksList.stream()
             .filter(courseWork -> compare(courseWork.getDueDate()))
-            .forEach(courseWork -> shoot(user, CourseWorkMapper.modelToDTO(courseWork)));
+            .forEach(courseWork -> shoot(user, CourseWorkToTaskMapper.modelToDTO(courseWork)));
     }
     
     private void sendMoodle(User user) {
         List<Lesson> lessonsList = getLessonService().list(user.getMoodleEmailAddress());
         lessonsList.stream()
             .filter(lesson -> compare(lesson.getDeadline()))
-            .forEach(lesson -> shoot(user, LessonMapper.modelToDTO(lesson)));
+            .forEach(lesson -> shoot(user, LessonToTaskMapper.modelToDTO(lesson)));
     }
     
     private void shoot(User user, TaskDTO task) {

@@ -1,6 +1,6 @@
 package com.communify.api.controller;
 
-import static com.communify.api.mapper.CourseWorkMapper.modelsToDTOs;
+import static com.communify.api.mapper.CourseWorkToTaskMapper.modelsToDTOs;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.communify.api.contracts.ICourseWorkService;
 import com.communify.api.contracts.ILessonService;
 import com.communify.api.dto.TaskDTO;
-import com.communify.api.mapper.LessonMapper;
+import com.communify.api.mapper.LessonToTaskMapper;
 
 import lombok.Getter;
 
@@ -38,7 +38,7 @@ public class TaskController {
     public List<TaskDTO> list(@RequestHeader("Authorization") String accessToken, 
             @RequestParam("email") String email) {
         List<TaskDTO> classroomDTOs = modelsToDTOs(getCourseWorkService().list(accessToken));
-        List<TaskDTO> moodleDTOs = LessonMapper.modelsToDTOs(getLessonService().list(email));
+        List<TaskDTO> moodleDTOs = LessonToTaskMapper.modelsToDTOs(getLessonService().list(email));
         return concat(classroomDTOs.stream(), moodleDTOs.stream())
                 .sorted(comparing(TaskDTO::getReturnDate).reversed()).collect(toList());
     }
