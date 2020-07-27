@@ -1,0 +1,18 @@
+<html>
+ 
+<head></head>
+ 
+<body>
+    <p>Olá <b>${user.getName()}</b>,</p>
+    <p>Você está recebendo este e-mail por ter concordado com o termo de responsabilidade no aplicativo La Salle Communify.</p>
+    <p>Você realizou seu primeiro acesso utilizando os seguintes endereços de e-mail:</p>
+    <p><b>Classroom:</b> ${user.getClassroomEmailAddress()}</p>
+    <p><b>Moodle:</b> ${user.getMoodleEmailAddress()}</p>
+    <p>Caso você não tenha feito este acesso, entre em contato imediatamente com a central através do endereço: <b>communify@unilasalle.edu.br</b></p>
+    <p>Endereço público que realizou o acesso: <b>${ip}</b>.</p>
+    <br>
+    <p>Atenciosamente,</p>
+    <p><b>Equipe La Salle Communify</b></p>
+</body>
+ 
+</html>

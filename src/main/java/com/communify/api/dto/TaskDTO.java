@@ -1,5 +1,7 @@
 package com.communify.api.dto;
 
+import static com.communify.api.helper.DateHelper.transform;
+
 import java.util.Date;
 
 import com.communify.api.enumerator.TaskOriginEnum;
@@ -13,7 +15,12 @@ public class TaskDTO {
 
     private String id;
     private String description;
+    private String courseName;
     private String link;
     private Date returnDate;
     private TaskOriginEnum origin;
+    
+    public String getFormattedDate() {
+        return transform(getReturnDate());
+    }
 }

@@ -22,6 +22,11 @@ public class DateHelper {
         return cast(build(date.getDayOfMonth(), date.getMonthValue(), date.getYear()));
     }
     
+    public static String transform(java.util.Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        return format.format(date);
+    }
+    
     public static java.util.Date cast(String date) {
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DEFAULT_DATE);

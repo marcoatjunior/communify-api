@@ -1,6 +1,5 @@
 package com.communify.api.service;
 
-import static com.communify.api.builder.GenericBuilder.of;
 import static com.communify.api.helper.DateHelper.transform;
 import static java.time.LocalDate.now;
 import static java.time.ZoneId.systemDefault;
@@ -9,12 +8,17 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.communify.api.dto.TaskDTO;
+import com.communify.api.mapper.CourseWorkMapper;
+import com.communify.api.mapper.LessonMapper;
 import com.communify.api.model.Lesson;
+import com.communify.api.model.User;
 import com.google.api.services.classroom.model.CourseWork;
 import com.google.api.services.classroom.model.Date;
 
@@ -25,8 +29,11 @@ import lombok.Getter;
 public class TaskNotificationService implements ITaskNotificationService {
     
     private static final Long NUMBER_OF_DAYS_IN_WEEK = 7L;
-    private static final String DEFAULT_SUBJECT_SENDER = "communify@unilasalle.edu.br";
-    private static final String DEFAULT_SUBJECT_MESSAGE = "Communify informa: Tarefa com entrega nesta semana!";
+    private static final String TEMPLATE_FILE = "notification.vm";
+    private static final String DEFAULT_SUBJECT_MESSAGE = "Tarefa com entrega nesta semana!";
+    
+    @Autowired
+    private IUserService userService;
 
     @Autowired
     private ICourseWorkService courseWorkService;
@@ -35,30 +42,34 @@ public class TaskNotificationService implements ITaskNotificationService {
     private ILessonService lessonService;
     
     @Autowired
-    private JavaMailSender emailSender;
+    private IMailService mailService;
+    
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Override
     public void send(String accessToken, String email) {
-        sendClassroom(accessToken, email);
-        sendMoodle(email);
+        User user = getUserService().findByClassroom(email);
+        sendClassroom(accessToken, user);
+        sendMoodle(user);
     }
 
-    private void sendClassroom(String accessToken, String email) {
+    private void sendClassroom(String accessToken, User user) {
         List<CourseWork> courseWorksList = getCourseWorkService().list(accessToken);
         courseWorksList.stream()
             .filter(courseWork -> daysBetween(courseWork.getDueDate()) <= NUMBER_OF_DAYS_IN_WEEK)
-            .forEach(courseWork -> shoot(email, courseWork.getAlternateLink()));
+            .forEach(courseWork -> shoot(user, CourseWorkMapper.modelToDTO(courseWork)));
     }
     
     private Long daysBetween(Date dueDate) {
         return DAYS.between(now(), convertToLocalDate(transform(dueDate)));
     }
     
-    private void sendMoodle(String email) {
-        List<Lesson> lessonsList = getLessonService().list(email);
+    private void sendMoodle(User user) {
+        List<Lesson> lessonsList = getLessonService().list(user.getMoodleEmailAddress());
         lessonsList.stream()
             .filter(lesson -> daysBetween(lesson.getDeadline()) <= NUMBER_OF_DAYS_IN_WEEK)
-            .forEach(lesson -> shoot(email, lesson.getActivityLink()));
+            .forEach(lesson -> shoot(user, LessonMapper.modelToDTO(lesson)));
     }
     
     private Long daysBetween(Long time) {
@@ -69,12 +80,10 @@ public class TaskNotificationService implements ITaskNotificationService {
         return date.toInstant().atZone(systemDefault()).toLocalDate();
     }
     
-    private void shoot(String receiver, String link) {
-        getEmailSender().send(of(SimpleMailMessage::new)
-            .with(SimpleMailMessage::setFrom, DEFAULT_SUBJECT_SENDER)
-            .with(SimpleMailMessage::setSubject, DEFAULT_SUBJECT_MESSAGE)
-            .with(SimpleMailMessage::setTo, receiver)
-            .with(SimpleMailMessage::setText, link)
-            .build());
+    private void shoot(User user, TaskDTO task) {
+        MimeMessage message = getMailSender().createMimeMessage();
+        getMailService().create(user, task, null, 
+                TEMPLATE_FILE, DEFAULT_SUBJECT_MESSAGE, message);
+        getMailSender().send(message);
     }
 }

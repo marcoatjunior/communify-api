@@ -1,11 +1,13 @@
 package com.communify.api.service;
 
-import static com.communify.api.builder.GenericBuilder.of;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import com.communify.api.dto.TaskDTO;
+import com.communify.api.model.User;
 
 import lombok.Getter;
 
@@ -13,23 +15,24 @@ import lombok.Getter;
 @Getter
 public class TermService implements ITermService {
 
-    private static final String DEFAULT_SUBJECT_SENDER  = "communify@unilasalle.edu.br";
-
-    private static final String DEFAULT_SUBJECT_MESSAGE = "Communify informa: Termo de responsabilidade";
-
+    private static final String TEMPLATE_FILE = "term.vm";
+    private static final String DEFAULT_SUBJECT_MESSAGE = "Termo de responsabilidade";
+    
     @Autowired
-    private JavaMailSender emailSender;
+    private IUserService userService;
+    
+    @Autowired
+    private IMailService mailService;
+    
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Override
     public void send(String email, String ip) {
-        getEmailSender().send(of(SimpleMailMessage::new).with(SimpleMailMessage::setFrom, DEFAULT_SUBJECT_SENDER)
-                .with(SimpleMailMessage::setSubject, DEFAULT_SUBJECT_MESSAGE).with(SimpleMailMessage::setTo, email)
-                .with(SimpleMailMessage::setText,
-                    "Você realizou seu primeiro acesso no aplicativo La Salle Communify utilizando o e-mail "
-                        + email + "."
-                        + "Caso você não tenha feito o acesso, entre em contato imediatamente com a central através do endereço: "
-                        + DEFAULT_SUBJECT_SENDER
-                        + ". IP que realizou o acesso: " + ip)
-                .build());
+        User user = getUserService().findByClassroom(email);
+        MimeMessage message = getMailSender().createMimeMessage();
+        getMailService().create(user, new TaskDTO(), ip, 
+                TEMPLATE_FILE, DEFAULT_SUBJECT_MESSAGE, message);
+        getMailSender().send(message);
     }
 }

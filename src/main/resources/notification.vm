@@ -1,0 +1,16 @@
+<html>
+ 
+<head></head>
+ 
+<body>
+    <p>Oi <b>${user.getName()}</b>,</p>
+    <p>Passando aqui para te lembrar sobre a tarefa <b>${task.getDescription()}</b> da disciplina <b>${task.getCourse()}</b>.</p>
+    <p>A data prevista de entrega dela é dia <b>${task.getFormattedDate()}</b>.</p>
+    <p>Se precisar, o link é este: <b>${task.getLink()}</b>.</p>
+    <p>Caso já tenha efetuado a devolução da tarefa, favor desconsiderar esta mensagem.</p>
+    <br>
+    <p>Atenciosamente,</p>
+    <p><b>Equipe La Salle Communify</b></p>
+</body>
+ 
+</html>
