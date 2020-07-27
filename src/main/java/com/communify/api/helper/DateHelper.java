@@ -14,7 +14,7 @@ import com.google.api.services.classroom.model.Date;
 
 public class DateHelper {
     
-    private static final Long WEEK_DAYS = 3L;
+    private static final Long WEEK_DAYS = 4L;
     private static final String DEFAULT_DATE = "dd/MM/yyyy";
 
     public static java.util.Date transform(Date date) {
