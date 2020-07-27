@@ -1,5 +1,6 @@
 package com.communify.api.service;
 
+import static com.communify.api.helper.DateHelper.compare;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class LessonService implements ILessonService {
             .getStudentCourses().stream()
                 .map(userCourse -> userCourse.getCourse())
                 .flatMap(course -> course.getLessons().stream())
+                .filter(lesson -> compare(lesson.getDeadline()))
                 .collect(toList());
     }
 

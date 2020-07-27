@@ -1,11 +1,7 @@
 package com.communify.api.service;
 
-import static com.communify.api.helper.DateHelper.transform;
-import static java.time.LocalDate.now;
-import static java.time.ZoneId.systemDefault;
-import static java.time.temporal.ChronoUnit.DAYS;
+import static com.communify.api.helper.DateHelper.compare;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.mail.internet.MimeMessage;
@@ -25,7 +21,6 @@ import com.communify.api.mapper.LessonMapper;
 import com.communify.api.model.CourseWork;
 import com.communify.api.model.Lesson;
 import com.communify.api.model.User;
-import com.google.api.services.classroom.model.Date;
 
 import lombok.Getter;
 
@@ -33,9 +28,8 @@ import lombok.Getter;
 @Getter
 public class TaskNotificationService implements ITaskNotificationService {
     
-    private static final Long NUMBER_OF_DAYS_IN_WEEK = 7L;
     private static final String TEMPLATE_FILE = "notification.vm";
-    private static final String DEFAULT_SUBJECT_MESSAGE = "Tarefa com entrega nesta semana!";
+    private static final String DEFAULT_SUBJECT_MESSAGE = "Tarefa com entrega nesta semana";
     
     @Autowired
     private IUserService userService;
@@ -62,33 +56,29 @@ public class TaskNotificationService implements ITaskNotificationService {
     private void sendClassroom(String accessToken, User user) {
         List<CourseWork> courseWorksList = getCourseWorkService().list(accessToken);
         courseWorksList.stream()
-            .filter(courseWork -> daysBetween(courseWork.getDueDate()) <= NUMBER_OF_DAYS_IN_WEEK)
+            .filter(courseWork -> compare(courseWork.getDueDate()))
             .forEach(courseWork -> shoot(user, CourseWorkMapper.modelToDTO(courseWork)));
-    }
-    
-    private Long daysBetween(Date dueDate) {
-        return DAYS.between(now(), convertToLocalDate(transform(dueDate)));
     }
     
     private void sendMoodle(User user) {
         List<Lesson> lessonsList = getLessonService().list(user.getMoodleEmailAddress());
         lessonsList.stream()
-            .filter(lesson -> daysBetween(lesson.getDeadline()) <= NUMBER_OF_DAYS_IN_WEEK)
+            .filter(lesson -> compare(lesson.getDeadline()))
             .forEach(lesson -> shoot(user, LessonMapper.modelToDTO(lesson)));
-    }
-    
-    private Long daysBetween(Long time) {
-        return DAYS.between(now(), convertToLocalDate(transform(time)));
-    }
-    
-    private LocalDate convertToLocalDate(java.util.Date date) {
-        return date.toInstant().atZone(systemDefault()).toLocalDate();
     }
     
     private void shoot(User user, TaskDTO task) {
         MimeMessage message = getMailSender().createMimeMessage();
         getMailService().create(user, task, null, 
-                TEMPLATE_FILE, DEFAULT_SUBJECT_MESSAGE, message);
+                TEMPLATE_FILE, getSubject(task), message);
         getMailSender().send(message);
+    }
+    
+    private String getSubject(TaskDTO task) {
+        return new StringBuilder()
+            .append(task.getCourse())
+            .append(": ")
+            .append(DEFAULT_SUBJECT_MESSAGE)
+            .toString();
     }
 }

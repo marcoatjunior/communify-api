@@ -9,11 +9,11 @@ INSERT INTO moodle_student (id, username, email) VALUES (4, 'daison.assis', 'dai
 INSERT INTO moodle_student (id, username, email) VALUES (5, 'douglas.brito', 'douglasbrito@gmail.com');
 
 -- Populate moodle_course table
-INSERT INTO moodle_course (id, fullname) VALUES (1, 'Ciência da Computação');
-INSERT INTO moodle_course (id, fullname) VALUES (2, 'Pedagogia');
-INSERT INTO moodle_course (id, fullname) VALUES (3, 'Internet das Coisas');
-INSERT INTO moodle_course (id, fullname) VALUES (4, 'Engenharia Mecânica');
-INSERT INTO moodle_course (id, fullname) VALUES (5, 'Marketing');
+INSERT INTO moodle_course (id, fullname) VALUES (1, 'Teoria da Computação');
+INSERT INTO moodle_course (id, fullname) VALUES (2, 'Redes de Computadores');
+INSERT INTO moodle_course (id, fullname) VALUES (3, 'Inteligência Artificial I');
+INSERT INTO moodle_course (id, fullname) VALUES (4, 'Algoritmos e Programação');
+INSERT INTO moodle_course (id, fullname) VALUES (5, 'Fundamentos da Computação');
 
 -- Populate moodle_local_id_course table
 INSERT INTO moodle_student_course (id, student_id, course_id) VALUES (1, 1 , 1);
