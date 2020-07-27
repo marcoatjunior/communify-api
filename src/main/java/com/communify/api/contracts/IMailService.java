@@ -1,4 +1,4 @@
-package com.communify.api.service;
+package com.communify.api.contracts;
 
 import javax.mail.internet.MimeMessage;
 

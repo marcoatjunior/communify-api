@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.communify.api.contracts.ICourseWorkService;
+import com.communify.api.contracts.ILessonService;
 import com.communify.api.dto.TaskDTO;
 import com.communify.api.mapper.LessonMapper;
-import com.communify.api.service.ICourseWorkService;
-import com.communify.api.service.ILessonService;
 
 import lombok.Getter;
 

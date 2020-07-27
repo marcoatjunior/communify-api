@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.communify.api.contracts.ILessonService;
 import com.communify.api.model.Lesson;
 import com.communify.api.repository.StudentRepository;
 

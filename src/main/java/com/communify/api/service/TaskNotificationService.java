@@ -14,6 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.communify.api.contracts.ICourseWorkService;
+import com.communify.api.contracts.ILessonService;
+import com.communify.api.contracts.IMailService;
+import com.communify.api.contracts.ITaskNotificationService;
+import com.communify.api.contracts.IUserService;
 import com.communify.api.dto.TaskDTO;
 import com.communify.api.mapper.CourseWorkMapper;
 import com.communify.api.mapper.LessonMapper;

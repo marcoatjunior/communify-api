@@ -1,4 +1,4 @@
-package com.communify.api.service;
+package com.communify.api.contracts;
 
 import com.communify.api.dto.UserDTO;
 import com.communify.api.model.User;
