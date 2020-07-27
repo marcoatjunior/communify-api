@@ -17,7 +17,7 @@ import com.communify.api.dto.LessonDTO;
 import lombok.Getter;
 
 @RestController
-@RequestMapping("/courses")
+@RequestMapping("/lessons")
 @Getter
 public class LessonController {
 
