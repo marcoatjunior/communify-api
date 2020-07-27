@@ -28,10 +28,3 @@ INSERT INTO moodle_lesson (id, name, deadline, activity_link, course_id) VALUES 
 INSERT INTO moodle_lesson (id, name, deadline, activity_link, course_id) VALUES (3, 'Trabalho 12', 1596140728, 'https://www.google.com', 2);
 INSERT INTO moodle_lesson (id, name, deadline, activity_link, course_id) VALUES (4, 'Exercício 3', 1596140728, 'https://www.google.com', 4);
 INSERT INTO moodle_lesson (id, name, deadline, activity_link, course_id) VALUES (5, 'Atividade 2', 1596140728, 'https://www.google.com', 5);
-
--- Populate moodle_lesson_attempts table
-INSERT INTO moodle_lesson_attempts (id, lesson_id, student_id) VALUES (1, 1, 1);
-INSERT INTO moodle_lesson_attempts (id, lesson_id, student_id) VALUES (2, 2, 1);
-INSERT INTO moodle_lesson_attempts (id, lesson_id, student_id) VALUES (3, 1, 2);
-INSERT INTO moodle_lesson_attempts (id, lesson_id, student_id) VALUES (4, 5, 1);
-INSERT INTO moodle_lesson_attempts (id, lesson_id, student_id) VALUES (5, 3, 5);
