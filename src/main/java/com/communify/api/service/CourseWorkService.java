@@ -12,8 +12,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.communify.api.contracts.IClassroomService;
-import com.communify.api.contracts.ICourseWorkService;
+import com.communify.api.contract.IClassroomService;
+import com.communify.api.contract.ICourseWorkService;
 import com.communify.api.model.CourseWork;
 import com.google.api.services.classroom.Classroom;
 import com.google.api.services.classroom.model.Course;

@@ -3,7 +3,7 @@ package com.communify.api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.communify.api.contracts.ICourseService;
+import com.communify.api.contract.ICourseService;
 import com.communify.api.model.Course;
 import com.communify.api.repository.CourseRepository;
 

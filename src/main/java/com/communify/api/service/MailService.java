@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import com.communify.api.contracts.IMailService;
+import com.communify.api.contract.IMailService;
 import com.communify.api.dto.TaskDTO;
 import com.communify.api.model.User;
 

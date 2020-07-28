@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.communify.api.contracts.ICourseWorkService;
-import com.communify.api.contracts.ILessonService;
+import com.communify.api.contract.ICourseWorkService;
+import com.communify.api.contract.ILessonService;
 import com.communify.api.dto.TaskDTO;
 import com.communify.api.mapper.LessonToTaskMapper;
 

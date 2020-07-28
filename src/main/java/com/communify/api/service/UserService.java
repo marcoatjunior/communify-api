@@ -3,7 +3,7 @@ package com.communify.api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.communify.api.contracts.IUserService;
+import com.communify.api.contract.IUserService;
 import com.communify.api.model.User;
 import com.communify.api.repository.UserRepository;
 

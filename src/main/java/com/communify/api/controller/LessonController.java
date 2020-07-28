@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.communify.api.contracts.ILessonService;
+import com.communify.api.contract.ILessonService;
 import com.communify.api.dto.LessonDTO;
 
 import lombok.Getter;

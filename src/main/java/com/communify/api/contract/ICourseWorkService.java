@@ -1,4 +1,4 @@
-package com.communify.api.contracts;
+package com.communify.api.contract;
 
 import java.util.List;
 

@@ -2,6 +2,8 @@ package com.communify.api.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +14,8 @@ import lombok.Setter;
 public class Lesson {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
     private String name;
     private Long deadline;

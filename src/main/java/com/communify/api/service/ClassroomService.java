@@ -6,7 +6,7 @@ import static com.google.api.client.json.jackson2.JacksonFactory.getDefaultInsta
 
 import org.springframework.stereotype.Service;
 
-import com.communify.api.contracts.IClassroomService;
+import com.communify.api.contract.IClassroomService;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.classroom.Classroom;
