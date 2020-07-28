@@ -19,11 +19,6 @@ public class Student {
     private String username;
     private String email;
     
-    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "Student_Course", 
-        joinColumns = { @JoinColumn(name = "student_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "course_id") }
-    )
+    @ManyToMany(mappedBy = "students")
     private List<Course> courses;
 }

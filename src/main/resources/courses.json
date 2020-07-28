@@ -1,0 +1,165 @@
+[
+  {
+    "fullname": "Linguagens Formais",
+    "students": [
+      {
+        "username": "marco.taborda",
+        "email": "marcotaborda.jr@gmail.com"
+      },
+      {
+        "username": "daniele.rocha",
+        "email": "floresdaniele3@gmail.com"
+      },
+      {
+        "username": "jacson.miranda",
+        "email": "jacsonmiranda@gmail.com"
+      },
+      {
+        "username": "daison.assis",
+        "email": "daisonassis@gmail.com"
+      },
+      {
+        "username": "douglas.brito",
+        "email": "douglasbrito@gmail.com"
+      }
+    ],
+    "lessons": [
+      {
+        "name": "Atividade 1",
+        "deadline": 1595934197,
+        "activityLink": "https://www.google.com"
+      },
+      {
+        "name": "Atividade 2",
+        "deadline": 1596538997,
+        "activityLink": "https://www.google.com"
+      },
+      {
+        "name": "Atividade 3",
+        "deadline": 1596538997,
+        "activityLink": "https://www.google.com"
+      }
+    ]
+  },
+  {
+    "fullname": "Algoritmos e Programação",
+    "students": [
+      {
+        "username": "marco.taborda",
+        "email": "marcotaborda.jr@gmail.com"
+      },
+      {
+        "username": "daniele.rocha",
+        "email": "floresdaniele3@gmail.com"
+      },
+      {
+        "username": "jacson.miranda",
+        "email": "jacsonmiranda@gmail.com"
+      },
+      {
+        "username": "daison.assis",
+        "email": "daisonassis@gmail.com"
+      },
+      {
+        "username": "douglas.brito",
+        "email": "douglasbrito@gmail.com"
+      }
+    ],
+    "lessons": [
+      {
+        "name": "Atividade 4",
+        "deadline": 1595934197,
+        "activityLink": "https://www.google.com"
+      },
+      {
+        "name": "Atividade 5",
+        "deadline": 1596538997,
+        "activityLink": "https://www.google.com"
+      },
+      {
+        "name": "Atividade 6",
+        "deadline": 1596538997,
+        "activityLink": "https://www.google.com"
+      }
+    ]
+  },
+  {
+    "fullname": "Empreendedorismo e Criatividade",
+    "students": [
+      {
+        "username": "marco.taborda",
+        "email": "marcotaborda.jr@gmail.com"
+      },
+      {
+        "username": "daniele.rocha",
+        "email": "floresdaniele3@gmail.com"
+      },
+      {
+        "username": "jacson.miranda",
+        "email": "jacsonmiranda@gmail.com"
+      },
+      {
+        "username": "daison.assis",
+        "email": "daisonassis@gmail.com"
+      },
+      {
+        "username": "douglas.brito",
+        "email": "douglasbrito@gmail.com"
+      }
+    ],
+    "lessons": [
+      {
+        "name": "Prova 3",
+        "deadline": 1595934197,
+        "activityLink": "https://www.google.com"
+      },
+      {
+        "name": "Prova 4",
+        "deadline": 1596538997,
+        "activityLink": "https://www.google.com"
+      }
+    ]
+  },
+  {
+    "fullname": "Fundamentos da Computação",
+    "students": [
+      {
+        "username": "marco.taborda",
+        "email": "marcotaborda.jr@gmail.com"
+      },
+      {
+        "username": "daniele.rocha",
+        "email": "floresdaniele3@gmail.com"
+      },
+      {
+        "username": "jacson.miranda",
+        "email": "jacsonmiranda@gmail.com"
+      },
+      {
+        "username": "daison.assis",
+        "email": "daisonassis@gmail.com"
+      },
+      {
+        "username": "douglas.brito",
+        "email": "douglasbrito@gmail.com"
+      }
+    ],
+    "lessons": [
+      {
+        "name": "Atividade 7",
+        "deadline": 1595934197,
+        "activityLink": "https://www.google.com"
+      },
+      {
+        "name": "Prova 1",
+        "deadline": 1596538997,
+        "activityLink": "https://www.google.com"
+      },
+      {
+        "name": "Prova 2",
+        "deadline": 1596538997,
+        "activityLink": "https://www.google.com"
+      }
+    ]
+  }
+]

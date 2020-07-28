@@ -18,7 +18,12 @@ public class Course {
     private Long id;
     private String fullname;
     
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "Student_Course", 
+        joinColumns = { @JoinColumn(name = "student_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "course_id") }
+    )
     private List<Student> students;
     
     @OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
