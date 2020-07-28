@@ -3,12 +3,9 @@ com/communify/api/contracts/ILessonService.class
 com/communify/api/model/User.class
 com/communify/api/repository/StudentRepository.class
 com/communify/api/controller/UserController.class
-com/communify/api/model/StudentCourse.class
 com/communify/api/controller/TaskController.class
-com/communify/api/controller/StudentCourseController.class
 com/communify/api/controller/NotificationController.class
 com/communify/api/mapper/StudentMapper.class
-com/communify/api/repository/StudentCourseRepository.class
 com/communify/api/controller/TermController.class
 com/communify/api/contracts/ICourseService.class
 com/communify/api/model/Lesson.class
@@ -16,13 +13,11 @@ com/communify/api/contracts/IClassroomService.class
 com/communify/api/helper/DateHelper.class
 com/communify/api/mapper/CourseWorkToTaskMapper.class
 com/communify/api/service/UserService.class
-com/communify/api/contracts/IStudentCourseService.class
 com/communify/api/enumerator/TaskOriginEnum.class
 com/communify/api/model/Course.class
 com/communify/api/repository/CourseRepository.class
 com/communify/api/repository/UserRepository.class
 com/communify/api/dto/CourseDTO.class
-com/communify/api/service/StudentCourseService.class
 com/communify/api/contracts/ITermService.class
 com/communify/api/repository/LessonRepository.class
 com/communify/api/service/LessonService.class
@@ -31,7 +26,6 @@ com/communify/api/service/ClassroomService.class
 com/communify/api/mapper/LessonToTaskMapper.class
 com/communify/api/service/NotificationService.class
 com/communify/api/contracts/IStudentService.class
-com/communify/api/mapper/StudentCourseMapper.class
 com/communify/api/service/MailService.class
 com/communify/api/service/CourseWorkService.class
 com/communify/api/mapper/UserMapper.class
@@ -45,7 +39,6 @@ com/communify/api/controller/CourseController.class
 com/communify/api/CommunifyApplication.class
 com/communify/api/dto/TaskDTO.class
 com/communify/api/dto/LessonDTO.class
-com/communify/api/dto/StudentCourseDTO.class
 com/communify/api/builder/GenericBuilder.class
 com/communify/api/service/StudentService.class
 com/communify/api/contracts/ICourseWorkService.class

@@ -18,9 +18,10 @@ public class Course {
     private Long id;
     private String fullname;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-    private List<StudentCourse> studentCourses;
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+    @OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true)
+    @JoinColumn(name = "course_id")
     private List<Lesson> lessons;
 }

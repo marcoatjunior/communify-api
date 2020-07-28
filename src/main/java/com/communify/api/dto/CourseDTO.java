@@ -11,6 +11,6 @@ public class CourseDTO {
 
     private Long id;
     private String fullname;
-    private List<StudentCourseDTO> studentCourses;
+    private List<StudentDTO> students;
     private List<LessonDTO> lessons;
 }

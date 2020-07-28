@@ -4,6 +4,9 @@ import static com.communify.api.mapper.LessonMapper.dtoToModel;
 import static com.communify.api.mapper.LessonMapper.modelToDTO;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +29,9 @@ public class LessonController {
 
     @CrossOrigin
     @PostMapping(produces = APPLICATION_JSON_VALUE)
-    public LessonDTO save(@RequestBody LessonDTO lessonDTO) {
-        return modelToDTO(getLessonService().save(dtoToModel(lessonDTO)));
+    public List<LessonDTO> save(@RequestBody List<LessonDTO> list) {
+        return list.stream()
+            .map(lessonDTO -> modelToDTO(getLessonService().save(dtoToModel(lessonDTO))))
+            .collect(Collectors.toList());
     }
 }

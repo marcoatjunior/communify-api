@@ -12,5 +12,5 @@ public class StudentDTO {
     private Long id;
     private String username;
     private String email;
-    private List<StudentCourseDTO> studentCourses;
+    private List<CourseDTO> courses;
 }
