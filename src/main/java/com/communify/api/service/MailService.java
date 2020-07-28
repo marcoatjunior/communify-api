@@ -24,7 +24,7 @@ import lombok.Getter;
 @Getter
 public class MailService implements IMailService {
     
-    private static final String DEFAULT_SUBJECT_SENDER  = "communify@unilasalle.edu.br";
+    private static final String DEFAULT_SUBJECT_SENDER  = "communify.mail@gmail.com";
 
     @Autowired
     private VelocityEngine velocityEngine;
