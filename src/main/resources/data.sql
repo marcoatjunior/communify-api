@@ -1,1 +1,0 @@
-INSERT INTO users (id, name, classroom_email_address, moodle_email_address, url_photo) VALUES (1, 'Marco Taborda', 'marcotaborda.jr@gmail.com', 'marcotaborda.jr@gmail.com', 'https://lh3.googleusercontent.com/a-/AOh14GhwLCRi1rCuqRktm-DLetBGZ9tmE2OdZTB7Ejfbng=s96-c');
