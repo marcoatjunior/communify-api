@@ -8,7 +8,7 @@
     <p>Você realizou seu primeiro acesso utilizando os seguintes endereços de e-mail:</p>
     <p><b>Classroom:</b> ${user.getClassroomEmailAddress()}</p>
     <p><b>Moodle:</b> ${user.getMoodleEmailAddress()}</p>
-    <p>Caso você não tenha feito este acesso, entre em contato imediatamente com a central através do endereço: <b>communify@unilasalle.edu.br</b></p>
+    <p>Caso você não tenha feito este acesso, entre em contato imediatamente com a central através do endereço: <b>communify.mail@gmail.com</b></p>
     <p>Endereço público que realizou o acesso: <b>${ip}</b>.</p>
     <br>
     <p>Atenciosamente,</p>
