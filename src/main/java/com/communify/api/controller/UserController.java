@@ -4,6 +4,8 @@ import static com.communify.api.mapper.UserMapper.dtoToModel;
 import static com.communify.api.mapper.UserMapper.modelToDTO;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.communify.api.contract.IUserService;
 import com.communify.api.dto.UserDTO;
+import com.communify.api.helper.LogHelper;
 
 import lombok.Getter;
 
@@ -28,7 +31,9 @@ public class UserController {
     
     @CrossOrigin
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public UserDTO findByClassroom(@RequestParam("email") String email) {
+    public UserDTO findByClassroom(@RequestParam("email") String email, 
+        HttpServletRequest request) {
+        LogHelper.createOrUpdate(email, request.getRemoteAddr());
         return modelToDTO(getUserService().findByClassroom(email));
     }
 
