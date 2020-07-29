@@ -39,7 +39,8 @@ public class CourseWorkService implements ICourseWorkService {
             Classroom classroom = getClassroomService().instance(accessToken);
             List<Course> coursesList = searchCourses(classroom);
             List<String> coursesIds = mapCourseIds(coursesList);
-            List<ListCourseWorkResponse> courseWorkResponseList = mapCourseWorksByCourse(classroom, coursesIds);
+            List<ListCourseWorkResponse> courseWorkResponseList = 
+                mapCourseWorksByCourse(classroom, coursesIds);
             return courseWorksList(classroom, courseWorkResponseList);
         } catch (Exception e) {
             e.getStackTrace();

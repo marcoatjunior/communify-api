@@ -15,7 +15,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.communify.api.contract.IMailService;
-import com.communify.api.dto.TaskDTO;
+import com.communify.api.model.Task;
 import com.communify.api.model.User;
 
 import lombok.Getter;
@@ -31,7 +31,7 @@ public class MailService implements IMailService {
     
     public void create(
         User user, 
-        TaskDTO task, 
+        Task task, 
         String ip, 
         String templateFile, 
         String subjectMessage, 
@@ -61,14 +61,14 @@ public class MailService implements IMailService {
         return null;
     }
     
-    private String getContent(User user, TaskDTO task, String ip, String templateFile) {
+    private String getContent(User user, Task task, String ip, String templateFile) {
         StringWriter writer = new StringWriter();
         getVelocityEngine()
             .mergeTemplate(templateFile, "UTF-8", createContext(user, task, ip), writer);
         return writer.toString();
     }
 
-    private VelocityContext createContext(User user, TaskDTO task, String ip) {
+    private VelocityContext createContext(User user, Task task, String ip) {
         VelocityContext context = new VelocityContext();
         context.put("user", user);
         context.put("task", task);

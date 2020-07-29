@@ -13,16 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.communify.api.builder.TaskClassroomBuilder;
+import com.communify.api.builder.TaskMoodleBuilder;
 import com.communify.api.contract.ICourseWorkService;
 import com.communify.api.contract.ILessonService;
 import com.communify.api.contract.IMailService;
 import com.communify.api.contract.INotificationService;
 import com.communify.api.contract.IUserService;
-import com.communify.api.dto.TaskDTO;
-import com.communify.api.mapper.CourseWorkToTaskMapper;
-import com.communify.api.mapper.LessonToTaskMapper;
 import com.communify.api.model.CourseWork;
 import com.communify.api.model.Lesson;
+import com.communify.api.model.Task;
 import com.communify.api.model.User;
 
 import lombok.Getter;
@@ -61,7 +61,7 @@ public class NotificationService implements INotificationService {
         courseWorksList.stream()
             .filter(courseWork -> isGreaterOrEqualThanNow(toLocalDate(courseWork.getDueDate())))
             .filter(courseWork -> isRemainingAtLeastFourDays(toLocalDate(courseWork.getDueDate())))
-            .forEach(courseWork -> shoot(user, CourseWorkToTaskMapper.modelToDTO(courseWork)));
+            .forEach(courseWork -> shoot(user, TaskClassroomBuilder.build(courseWork)));
     }
     
     private void sendMoodle(User user) {
@@ -69,17 +69,17 @@ public class NotificationService implements INotificationService {
         lessonsList.stream()
             .filter(lesson -> isGreaterOrEqualThanNow(toLocalDate(lesson.getDeadline())))
             .filter(lesson -> isRemainingAtLeastFourDays(toLocalDate(lesson.getDeadline())))
-            .forEach(lesson -> shoot(user, LessonToTaskMapper.modelToDTO(lesson)));
+            .forEach(lesson -> shoot(user, TaskMoodleBuilder.build(lesson)));
     }
     
-    private void shoot(User user, TaskDTO task) {
+    private void shoot(User user, Task task) {
         MimeMessage message = getMailSender().createMimeMessage();
         getMailService().create(user, task, null, 
                 TEMPLATE_FILE, getSubject(task), message);
         getMailSender().send(message);
     }
     
-    private String getSubject(TaskDTO task) {
+    private String getSubject(Task task) {
         return new StringBuilder()
             .append(task.getCourse())
             .append(": ")

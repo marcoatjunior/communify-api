@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.communify.api.contract.IMailService;
 import com.communify.api.contract.ITermService;
 import com.communify.api.contract.IUserService;
-import com.communify.api.dto.TaskDTO;
+import com.communify.api.model.Task;
 import com.communify.api.model.User;
 
 import lombok.Getter;
@@ -34,7 +34,7 @@ public class TermService implements ITermService {
     public void send(String email, String ip) {
         User user = getUserService().findByClassroom(email);
         MimeMessage message = getMailSender().createMimeMessage();
-        getMailService().create(user, new TaskDTO(), ip, 
+        getMailService().create(user, new Task(), ip, 
                 TEMPLATE_FILE, DEFAULT_SUBJECT_MESSAGE, message);
         getMailSender().send(message);
     }

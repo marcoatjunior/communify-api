@@ -1,4 +1,6 @@
-package com.communify.api.dto;
+package com.communify.api.model;
+
+import static com.communify.api.helper.DateHelper.format;
 
 import java.util.Date;
 
@@ -9,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TaskDTO {
+public class Task {
 
     private String id;
     private String description;
@@ -17,4 +19,8 @@ public class TaskDTO {
     private String link;
     private Date returnDate;
     private TaskOriginEnum origin;
+    
+    public String getFormattedDate() {
+        return format(getReturnDate());
+    }
 }
