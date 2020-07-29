@@ -8,7 +8,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.List;
 
 import com.communify.api.dto.StudentDTO;
-import com.communify.api.model.Student;
+import com.communify.api.entity.Student;
 
 public class StudentMapper {
 

@@ -1,4 +1,4 @@
-package com.communify.api.model;
+package com.communify.api.entity;
 
 import javax.persistence.*;
 
@@ -10,15 +10,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="users")
-public class User {
+@Table(name = "moodle_lesson")
+public class Lesson {
 
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
     private String name;
-    private String classroomEmailAddress;
-    private String moodleEmailAddress;
-    private String urlPhoto;
+    private Long deadline;
+    private String activityLink;
+    
+    @ManyToOne
+    private Course course;
 }

@@ -8,7 +8,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.List;
 
 import com.communify.api.dto.LessonDTO;
-import com.communify.api.model.Lesson;
+import com.communify.api.entity.Lesson;
 
 public class LessonMapper {
 

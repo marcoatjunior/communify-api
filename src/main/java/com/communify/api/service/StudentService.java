@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.communify.api.contract.IStudentService;
-import com.communify.api.model.Student;
+import com.communify.api.entity.Student;
 import com.communify.api.repository.StudentRepository;
 
 import lombok.Getter;

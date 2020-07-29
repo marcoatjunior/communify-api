@@ -15,8 +15,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.communify.api.contract.IMailService;
+import com.communify.api.entity.User;
 import com.communify.api.model.Task;
-import com.communify.api.model.User;
 
 import lombok.Getter;
 

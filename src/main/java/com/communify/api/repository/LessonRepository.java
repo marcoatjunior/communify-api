@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.communify.api.model.Lesson;
+import com.communify.api.entity.Lesson;
 
 @Repository
 public interface LessonRepository extends CrudRepository<Lesson, Long> {

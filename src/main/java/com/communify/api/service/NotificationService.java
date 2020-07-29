@@ -20,10 +20,10 @@ import com.communify.api.contract.ILessonService;
 import com.communify.api.contract.IMailService;
 import com.communify.api.contract.INotificationService;
 import com.communify.api.contract.IUserService;
+import com.communify.api.entity.Lesson;
+import com.communify.api.entity.User;
 import com.communify.api.model.CourseWork;
-import com.communify.api.model.Lesson;
 import com.communify.api.model.Task;
-import com.communify.api.model.User;
 
 import lombok.Getter;
 

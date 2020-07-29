@@ -2,7 +2,7 @@ package com.communify.api.contract;
 
 import java.util.List;
 
-import com.communify.api.model.Lesson;
+import com.communify.api.entity.Lesson;
 
 public interface ILessonService {
 

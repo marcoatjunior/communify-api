@@ -4,7 +4,7 @@ import static com.communify.api.builder.GenericBuilder.of;
 import static java.util.Optional.ofNullable;
 
 import com.communify.api.dto.UserDTO;
-import com.communify.api.model.User;
+import com.communify.api.entity.User;
 
 public class UserMapper {
 

@@ -3,8 +3,8 @@ package com.communify.api.builder;
 import static com.communify.api.builder.GenericBuilder.of;
 import static com.communify.api.helper.MoodleDateHelper.toDate;
 
+import com.communify.api.entity.Lesson;
 import com.communify.api.enumerator.TaskOriginEnum;
-import com.communify.api.model.Lesson;
 import com.communify.api.model.Task;
 
 public class TaskMoodleBuilder {

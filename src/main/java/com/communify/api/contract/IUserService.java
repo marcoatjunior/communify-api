@@ -1,6 +1,6 @@
 package com.communify.api.contract;
 
-import com.communify.api.model.User;
+import com.communify.api.entity.User;
 
 public interface IUserService {
 

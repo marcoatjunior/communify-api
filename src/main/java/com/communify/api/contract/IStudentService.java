@@ -1,6 +1,6 @@
 package com.communify.api.contract;
 
-import com.communify.api.model.Student;
+import com.communify.api.entity.Student;
 
 public interface IStudentService {
 

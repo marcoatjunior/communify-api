@@ -9,8 +9,8 @@ import static java.util.stream.Collectors.toList;
 import java.util.List;
 
 import com.communify.api.dto.TaskDTO;
+import com.communify.api.entity.Lesson;
 import com.communify.api.enumerator.TaskOriginEnum;
-import com.communify.api.model.Lesson;
 
 public class LessonToTaskMapper {
 

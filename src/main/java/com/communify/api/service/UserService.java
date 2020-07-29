@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.communify.api.contract.IUserService;
-import com.communify.api.model.User;
+import com.communify.api.entity.User;
 import com.communify.api.repository.UserRepository;
 
 import lombok.Getter;

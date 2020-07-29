@@ -1,6 +1,6 @@
 package com.communify.api.contract;
 
-import com.communify.api.model.Course;
+import com.communify.api.entity.Course;
 
 public interface ICourseService {
 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.communify.api.contract.ILessonService;
 import com.communify.api.contract.IStudentService;
-import com.communify.api.model.Lesson;
+import com.communify.api.entity.Lesson;
 import com.communify.api.repository.LessonRepository;
 
 import lombok.Getter;

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import com.communify.api.contract.IMailService;
 import com.communify.api.contract.ITermService;
 import com.communify.api.contract.IUserService;
+import com.communify.api.entity.User;
 import com.communify.api.model.Task;
-import com.communify.api.model.User;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.communify.api.model;
+package com.communify.api.entity;
 
 import java.util.List;
 
