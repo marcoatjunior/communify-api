@@ -17,7 +17,8 @@ public class ClassroomService implements IClassroomService {
     @Override
     public Classroom instance(String accessToken) {
         try {
-            Credential credential = new Credential(authorizationHeaderAccessMethod()).setAccessToken(accessToken);
+            Credential credential = new Credential(authorizationHeaderAccessMethod())
+                    .setAccessToken(accessToken);
             final NetHttpTransport httpTransport = newTrustedTransport();
             Classroom service = instance(credential, httpTransport);
             return service;
@@ -28,6 +29,8 @@ public class ClassroomService implements IClassroomService {
     }
 
     private Classroom instance(Credential credential, final NetHttpTransport httpTransport) {
-        return new Classroom.Builder(httpTransport, getDefaultInstance(), credential).build();
+        return new Classroom.Builder(httpTransport, getDefaultInstance(), credential)
+                .setApplicationName("Communify")
+                .build();
     }
 }

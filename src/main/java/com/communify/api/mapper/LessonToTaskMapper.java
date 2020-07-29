@@ -1,7 +1,7 @@
 package com.communify.api.mapper;
 
 import static com.communify.api.builder.GenericBuilder.of;
-import static com.communify.api.helper.DateHelper.transform;
+import static com.communify.api.helper.MoodleDateHelper.toDate;
 import static java.util.Collections.emptyList;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
@@ -34,7 +34,7 @@ public class LessonToTaskMapper {
             .with(TaskDTO::setDescription, lesson.getName())
             .with(TaskDTO::setCourse, lesson.getCourse().getFullname())
             .with(TaskDTO::setLink, lesson.getActivityLink())
-            .with(TaskDTO::setReturnDate, transform(lesson.getDeadline()))
+            .with(TaskDTO::setReturnDate, toDate(lesson.getDeadline()))
             .with(TaskDTO::setOrigin, TaskOriginEnum.Moodle)
             .build();
     }

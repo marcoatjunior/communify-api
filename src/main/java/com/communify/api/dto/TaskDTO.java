@@ -1,6 +1,6 @@
 package com.communify.api.dto;
 
-import static com.communify.api.helper.DateHelper.transform;
+import static com.communify.api.helper.DateHelper.format;
 
 import java.util.Date;
 
@@ -21,6 +21,6 @@ public class TaskDTO {
     private TaskOriginEnum origin;
     
     public String getFormattedDate() {
-        return transform(getReturnDate());
+        return format(getReturnDate());
     }
 }

@@ -1,7 +1,8 @@
 package com.communify.api.service;
 
 import static com.communify.api.builder.GenericBuilder.of;
-import static com.communify.api.helper.DateHelper.compare;
+import static com.communify.api.helper.ClassroomDateHelper.toLocalDate;
+import static com.communify.api.helper.DateHelper.isGreaterOrEqualThanNow;
 import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toList;
 
@@ -74,7 +75,7 @@ public class CourseWorkService implements ICourseWorkService {
             .map(courseWorkResponseList -> courseWorkResponseList.getCourseWork())
             .filter(courseWorks -> !isNull(courseWorks))
             .flatMap(courseWorks -> courseWorks.stream())
-            .filter(courseWork -> compare(courseWork.getDueDate()))
+            .filter(courseWork -> isGreaterOrEqualThanNow(toLocalDate(courseWork.getDueDate())))
             .map(courseWork -> build(classroom, courseWork))
             .collect(toList());
         return courseWorksList;
