@@ -5,6 +5,7 @@ import static com.communify.api.helper.DateHelper.cast;
 import static java.time.Instant.ofEpochSecond;
 import static java.time.LocalDateTime.ofInstant;
 import static java.time.ZoneId.systemDefault;
+import static java.util.Objects.isNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,6 +16,9 @@ public class MoodleDateHelper {
     }
 
     public static java.util.Date toDate(Long time) {
+        if (isNull(time)) {
+            return null;
+        }
         LocalDateTime date = ofInstant(ofEpochSecond(time), systemDefault());
         return cast(build(date.getDayOfMonth(), date.getMonthValue(), date.getYear()));
     }

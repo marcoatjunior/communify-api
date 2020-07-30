@@ -18,6 +18,9 @@ public class DateHelper {
     private static final String DEFAULT_DATE = "dd/MM/yyyy";
     
     public static String format(Date date) {
+        if (isNull(date)) {
+            return null;
+        }
         return new SimpleDateFormat(DEFAULT_DATE).format(date);
     }
 

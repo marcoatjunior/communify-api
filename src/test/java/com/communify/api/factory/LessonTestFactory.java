@@ -29,4 +29,14 @@ public class LessonTestFactory {
                 .with(Course::setFullname, COURSE_NAME).build())
             .build();
     }
+    
+    public static Lesson createWithNoReturnDate() {
+        return of(Lesson::new)
+            .with(Lesson::setId, ID)
+            .with(Lesson::setName, NAME)
+            .with(Lesson::setActivityLink, ACTIVITY_LINK)
+            .with(Lesson::setCourse, of(Course::new)
+                .with(Course::setFullname, COURSE_NAME).build())
+            .build();
+    }
 }

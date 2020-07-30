@@ -3,6 +3,7 @@ package com.communify.api.helper;
 import static com.communify.api.helper.DateHelper.build;
 import static com.communify.api.helper.DateHelper.cast;
 import static java.time.ZoneId.systemDefault;
+import static java.util.Objects.isNull;
 
 import java.time.LocalDate;
 
@@ -14,6 +15,9 @@ public class ClassroomDateHelper {
     }
 
     public static java.util.Date toDate(Date date) {
+        if (isNull(date)) {
+            return null;
+        }
         return cast(build(date.getDay(), date.getMonth(), date.getYear()));
     }
     

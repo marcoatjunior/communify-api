@@ -77,7 +77,8 @@ public class CourseWorkService implements ICourseWorkService {
             .map(courseWorkResponseList -> courseWorkResponseList.getCourseWork())
             .filter(courseWorks -> !isNull(courseWorks))
             .flatMap(courseWorks -> courseWorks.stream())
-            .filter(courseWork -> isGreaterOrEqualThanNow(toLocalDate(courseWork.getDueDate())))
+            .filter(courseWork -> isNull(courseWork.getDueDate()) || 
+                isGreaterOrEqualThanNow(toLocalDate(courseWork.getDueDate())))
             .map(courseWork -> build(classroom, courseWork))
             .collect(toList());
         return courseWorksList;

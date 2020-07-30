@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,8 @@ public class TaskController {
         List<TaskDTO> classroomDTOs = modelsToDTOs(getCourseWorkService().list(accessToken));
         List<TaskDTO> moodleDTOs = LessonToTaskMapper.modelsToDTOs(getLessonService().list(email));
         return concat(classroomDTOs.stream(), moodleDTOs.stream())
-                .sorted(comparing(TaskDTO::getReturnDate).reversed()).collect(toList());
+                .sorted(comparing(TaskDTO::getReturnDate, 
+                    Comparator.nullsFirst(Comparator.reverseOrder()))).collect(toList());
     }
     
 }

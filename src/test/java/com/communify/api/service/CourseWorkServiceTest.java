@@ -3,6 +3,7 @@ package com.communify.api.service;
 import static org.mockito.Mockito.when;
 import static com.communify.api.builder.GenericBuilder.of;
 import static com.communify.api.factory.ClassroomListCourseWorksResponseTestFactory.create;
+import static com.communify.api.factory.ClassroomListCourseWorksResponseTestFactory.createWithNoReturnDate;
 import static java.util.Arrays.asList;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
 import static org.junit.Assert.assertEquals;
@@ -61,7 +62,18 @@ public class CourseWorkServiceTest extends CommunifyApplicationTests {
     
     @Test
     public void shouldListCourseWorks() throws Exception {
-        Classroom classroom = mockClassroomService();
+        Classroom classroom = mockClassroomService(true);
+        when(getClassroomService().instance(any())).thenReturn(classroom);
+        
+        java.util.List<com.communify.api.model.CourseWork> courseWorksList = 
+            getCourseWorkService().list(ACCESS_TOKEN);
+        assertNotNull(courseWorksList);
+        assertFalse(isEmpty(courseWorksList));
+    }
+    
+    @Test
+    public void shouldListCourseWorksEvenIfReturnDateIsNull() throws Exception {
+        Classroom classroom = mockClassroomService(false);
         when(getClassroomService().instance(any())).thenReturn(classroom);
         
         java.util.List<com.communify.api.model.CourseWork> courseWorksList = 
@@ -100,12 +112,13 @@ public class CourseWorkServiceTest extends CommunifyApplicationTests {
         assertEquals(0, list.size());
     }
     
-    private Classroom mockClassroomService() throws Exception {
+    private Classroom mockClassroomService(Boolean withReturnDate) throws Exception {
         Get get = mock(Get.class);
         when(get.execute()).thenReturn(ClassroomCourseResponseTestFactory.create());
         
         List classroomCourseWorksList = mock(List.class);
-        when(classroomCourseWorksList.execute()).thenReturn(create());
+        when(classroomCourseWorksList.execute()).thenReturn(
+            withReturnDate ? create() : createWithNoReturnDate());
         
         CourseWork courseWork = mock(CourseWork.class);
         when(courseWork.list(any())).thenReturn(classroomCourseWorksList);

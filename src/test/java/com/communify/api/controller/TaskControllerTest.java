@@ -2,9 +2,7 @@ package com.communify.api.controller;
 
 import static com.communify.api.factory.CourseWorkTestFactory.DUE_DATE;
 import static com.communify.api.factory.LessonTestFactory.DEADLINE;
-import static com.communify.api.helper.ClassroomDateHelper.toDate;
 import static com.communify.api.helper.DateHelper.format;
-import static com.communify.api.helper.MoodleDateHelper.toDate;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -28,6 +26,8 @@ import com.communify.api.entity.Lesson;
 import com.communify.api.enumerator.TaskOriginEnum;
 import com.communify.api.factory.CourseWorkTestFactory;
 import com.communify.api.factory.LessonTestFactory;
+import com.communify.api.helper.ClassroomDateHelper;
+import com.communify.api.helper.MoodleDateHelper;
 import com.communify.api.mapper.TaskMapper;
 import com.communify.api.model.CourseWork;
 import com.communify.api.model.Task;
@@ -68,20 +68,53 @@ public class TaskControllerTest extends CommunifyApplicationTests {
         assertNotNull(list);
         assertEquals(2, list.size());
         
-        assertNull(list.get(1).getCourse());
+        assertNotNull(list.get(0).getCourse());
         assertEquals(LessonTestFactory.ID.toString(), list.get(0).getId());
         assertEquals(LessonTestFactory.NAME, list.get(0).getDescription());
-        assertEquals(format(toDate(DEADLINE)), format(list.get(0).getReturnDate()));
+        assertEquals(format(MoodleDateHelper.toDate(DEADLINE)), 
+            format(list.get(0).getReturnDate()));
         assertEquals(LessonTestFactory.ACTIVITY_LINK, list.get(0).getLink());
         assertEquals(TaskOriginEnum.Moodle, list.get(0).getOrigin());
         
         assertNull(list.get(1).getCourse());
         assertEquals(CourseWorkTestFactory.ID, list.get(1).getId());
         assertEquals(CourseWorkTestFactory.TITLE, list.get(1).getDescription());
-        assertEquals(format(toDate(DUE_DATE)), format(list.get(1).getReturnDate()));
+        assertEquals(format(ClassroomDateHelper.toDate(DUE_DATE)), 
+            format(list.get(1).getReturnDate()));
         assertEquals(CourseWorkTestFactory.ALTERNATE_LINK, list.get(1).getLink());
         assertEquals(TaskOriginEnum.Classroom, list.get(1).getOrigin());
         assertEquals(TaskOriginEnum.Classroom.getAmbienteVirtual(), list.get(1)
+            .getOrigin().getAmbienteVirtual());
+    }
+    
+    @Test
+    public void shouldListTasksEvenIfReturnDateIsNull() {
+        List<Lesson> lessonsList = asList(LessonTestFactory.createWithNoReturnDate());
+        when(getLessonService().list(any())).thenReturn(lessonsList);
+        
+        List<CourseWork> courseWorksList = asList(CourseWorkTestFactory.createWithNoReturnDate());
+        when(getCourseWorkService().list(any())).thenReturn(courseWorksList);
+        
+        List<TaskDTO> tasksList = getTaskController().list(ACCESS_TOKEN, EMAIL);
+        List<Task> list = TaskMapper.dtosToModels(tasksList);
+        
+        assertNotNull(list);
+        assertEquals(2, list.size());
+        
+        assertNotNull(list.get(1).getCourse());
+        assertEquals(LessonTestFactory.ID.toString(), list.get(1).getId());
+        assertEquals(LessonTestFactory.NAME, list.get(1).getDescription());
+        assertEquals(format(MoodleDateHelper.toDate(null)), format(list.get(1).getReturnDate()));
+        assertEquals(LessonTestFactory.ACTIVITY_LINK, list.get(1).getLink());
+        assertEquals(TaskOriginEnum.Moodle, list.get(1).getOrigin());
+        
+        assertNull(list.get(0).getCourse());
+        assertEquals(CourseWorkTestFactory.ID, list.get(0).getId());
+        assertEquals(CourseWorkTestFactory.TITLE, list.get(0).getDescription());
+        assertEquals(format(ClassroomDateHelper.toDate(null)), format(list.get(0).getReturnDate()));
+        assertEquals(CourseWorkTestFactory.ALTERNATE_LINK, list.get(0).getLink());
+        assertEquals(TaskOriginEnum.Classroom, list.get(0).getOrigin());
+        assertEquals(TaskOriginEnum.Classroom.getAmbienteVirtual(), list.get(0)
             .getOrigin().getAmbienteVirtual());
     }
 }

@@ -73,4 +73,22 @@ public class NotificationServiceTest extends CommunifyApplicationTests {
         
         getNotificationService().send(ACCESS_TOKEN, EMAIL);
     }
+    
+    @Test
+    public void shouldNotSendNotificationWhenReturnDatesAreNotDefined() {
+        User user = UserTestFactory.create();
+        when(getUserService().findByClassroom(EMAIL)).thenReturn(user);
+        
+        List<Lesson> lessonsList = asList(LessonTestFactory.createWithNoReturnDate());
+        when(getLessonService().list(any())).thenReturn(lessonsList);
+        
+        List<CourseWork> courseWorksList = asList(CourseWorkTestFactory.createWithNoReturnDate());
+        when(getCourseWorkService().list(any())).thenReturn(courseWorksList);
+        
+        MimeMessage mimeMessage = mock(MimeMessage.class);
+        doNothing().when(getMailSender()).send(mimeMessage);
+        doNothing().when(getMailService()).create(any(), any(), any(), any(), any(), any());
+        
+        getNotificationService().send(ACCESS_TOKEN, EMAIL);
+    }
 }

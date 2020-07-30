@@ -27,5 +27,15 @@ public class ClassroomListCourseWorksResponseTestFactory {
                 .with(CourseWork::setAlternateLink, ALTERNATE_LINK)
                 .with(CourseWork::setDueDate, DUE_DATE)
                 .build()));
-      }
+    }
+    
+    public static ListCourseWorkResponse createWithNoReturnDate() throws Exception {
+        return of(ListCourseWorkResponse::new).build()
+            .setCourseWork(asList(of(CourseWork::new)
+                .with(CourseWork::setId, ID)
+                .with(CourseWork::setCourseId, COURSE_ID)
+                .with(CourseWork::setTitle, TITLE)
+                .with(CourseWork::setAlternateLink, ALTERNATE_LINK)
+                .build()));
+    }
 }

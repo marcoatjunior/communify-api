@@ -49,6 +49,17 @@ public class LessonServiceTest extends CommunifyApplicationTests {
     }
     
     @Test
+    public void shouldListLessonsByEmailEvenIfReturnDateIsNull() {
+        List<Lesson> lessonsList = asList(LessonTestFactory.createWithNoReturnDate());
+        when(getLessonRepository().findByEmail(any())).thenReturn(lessonsList);
+        
+        List<Lesson> lessonsListReturned = getLessonService().list(EMAIL);
+        
+        assertNotNull(lessonsListReturned);
+        assertEquals(1, lessonsListReturned.size());
+    }
+    
+    @Test
     public void shouldSaveNewCourse() {
         Lesson lesson = LessonTestFactory.create();
         when(getLessonRepository().save(any())).thenReturn(lesson);

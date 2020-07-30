@@ -24,5 +24,14 @@ public class CourseWorkTestFactory {
             .with(CourseWork::setDueDate, DUE_DATE)
             .with(CourseWork::setCourse, new Course())
             .build();
-      }
+    }
+    
+    public static CourseWork createWithNoReturnDate() {
+        return of(CourseWork::new)
+            .with(CourseWork::setId, ID)
+            .with(CourseWork::setTitle, TITLE)
+            .with(CourseWork::setAlternateLink, ALTERNATE_LINK)
+            .with(CourseWork::setCourse, new Course())
+            .build();
+    }
 }

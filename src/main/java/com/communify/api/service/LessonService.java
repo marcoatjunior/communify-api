@@ -2,6 +2,7 @@ package com.communify.api.service;
 
 import static com.communify.api.helper.DateHelper.isGreaterOrEqualThanNow;
 import static com.communify.api.helper.MoodleDateHelper.toLocalDate;
+import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
@@ -27,7 +28,8 @@ public class LessonService implements ILessonService {
     @Override
     public List<Lesson> list(String email) {
         return getLessonRepository().findByEmail(email).stream()
-            .filter(lesson -> isGreaterOrEqualThanNow(toLocalDate(lesson.getDeadline())))
+            .filter(lesson -> isNull(lesson.getDeadline()) || 
+                isGreaterOrEqualThanNow(toLocalDate(lesson.getDeadline())))
             .collect(toList());
     }
 

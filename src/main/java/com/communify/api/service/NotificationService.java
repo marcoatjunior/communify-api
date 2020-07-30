@@ -4,6 +4,7 @@ import static com.communify.api.helper.ClassroomDateHelper.toLocalDate;
 import static com.communify.api.helper.DateHelper.isGreaterOrEqualThanNow;
 import static com.communify.api.helper.DateHelper.isRemainingAtLeastFourDays;
 import static com.communify.api.helper.MoodleDateHelper.toLocalDate;
+import static java.util.Objects.isNull;
 
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class NotificationService implements INotificationService {
     private void sendClassroom(String accessToken, User user) {
         List<CourseWork> courseWorksList = getCourseWorkService().list(accessToken);
         courseWorksList.stream()
+            .filter(courseWork -> !isNull(courseWork.getDueDate()))
             .filter(courseWork -> isGreaterOrEqualThanNow(toLocalDate(courseWork.getDueDate())))
             .filter(courseWork -> isRemainingAtLeastFourDays(toLocalDate(courseWork.getDueDate())))
             .forEach(courseWork -> shoot(user, TaskClassroomBuilder.build(courseWork)));
@@ -67,6 +69,7 @@ public class NotificationService implements INotificationService {
     private void sendMoodle(User user) {
         List<Lesson> lessonsList = getLessonService().list(user.getMoodleEmailAddress());
         lessonsList.stream()
+            .filter(lesson -> !isNull(lesson.getDeadline()))
             .filter(lesson -> isGreaterOrEqualThanNow(toLocalDate(lesson.getDeadline())))
             .filter(lesson -> isRemainingAtLeastFourDays(toLocalDate(lesson.getDeadline())))
             .forEach(lesson -> shoot(user, TaskMoodleBuilder.build(lesson)));
