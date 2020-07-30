@@ -38,7 +38,7 @@ public class MailService implements IMailService {
         MimeMessage message
     ) {
         try {
-            MimeMessageHelper messageHelper = new MimeMessageHelper(message);
+            MimeMessageHelper messageHelper = instanceMimeMessageHelper(message);
             messageHelper.setFrom(DEFAULT_SUBJECT_SENDER);
             messageHelper.setTo(parseReceivers(user));
             messageHelper.setSubject(subjectMessage);
@@ -47,8 +47,13 @@ public class MailService implements IMailService {
             e.getStackTrace();
         }
     }
+
+    protected MimeMessageHelper instanceMimeMessageHelper(MimeMessage message) 
+        throws MessagingException {
+        return new MimeMessageHelper(message);
+    }
     
-    private InternetAddress[] parseReceivers(User user) {
+    protected InternetAddress[] parseReceivers(User user) {
         try {
             return parse(new StringBuilder()
                 .append(user.getClassroomEmailAddress())
@@ -61,14 +66,14 @@ public class MailService implements IMailService {
         return null;
     }
     
-    private String getContent(User user, Task task, String ip, String templateFile) {
+    protected String getContent(User user, Task task, String ip, String templateFile) {
         StringWriter writer = new StringWriter();
         getVelocityEngine()
             .mergeTemplate(templateFile, "UTF-8", createContext(user, task, ip), writer);
         return writer.toString();
     }
 
-    private VelocityContext createContext(User user, Task task, String ip) {
+    protected VelocityContext createContext(User user, Task task, String ip) {
         VelocityContext context = new VelocityContext();
         context.put("user", user);
         context.put("task", task);

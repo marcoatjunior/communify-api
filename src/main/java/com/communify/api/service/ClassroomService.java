@@ -15,20 +15,15 @@ import com.google.api.services.classroom.Classroom;
 public class ClassroomService implements IClassroomService {
 
     @Override
-    public Classroom instance(String accessToken) {
-        try {
-            Credential credential = new Credential(authorizationHeaderAccessMethod())
-                    .setAccessToken(accessToken);
-            final NetHttpTransport httpTransport = newTrustedTransport();
-            Classroom service = instance(credential, httpTransport);
-            return service;
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-        return new Classroom(null, null, null);
+    public Classroom instance(String accessToken) throws Exception {
+        return instance(instanciateCredential(accessToken), newTrustedTransport());
     }
 
-    private Classroom instance(Credential credential, final NetHttpTransport httpTransport) {
+    protected Credential instanciateCredential(String accessToken) {
+        return new Credential(authorizationHeaderAccessMethod()).setAccessToken(accessToken);
+    }
+
+    protected Classroom instance(Credential credential, final NetHttpTransport httpTransport) {
         return new Classroom.Builder(httpTransport, getDefaultInstance(), credential)
                 .setApplicationName("Communify")
                 .build();

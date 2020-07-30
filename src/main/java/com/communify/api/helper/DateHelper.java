@@ -3,12 +3,16 @@ package com.communify.api.helper;
 import static java.math.BigDecimal.ZERO;
 import static java.time.LocalDate.now;
 import static java.time.temporal.ChronoUnit.DAYS;
+import static java.util.Objects.isNull;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
-public abstract class DateHelper {
+public class DateHelper {
+    
+    private DateHelper() {
+    }
     
     private static final Long WEEK_DAYS = 4L;
     private static final String DEFAULT_DATE = "dd/MM/yyyy";
@@ -45,6 +49,9 @@ public abstract class DateHelper {
     }
     
     protected static String setZero(Integer month) {
+        if (isNull(month)) {
+            return "".toString();
+        }
         return month < 10 ? ZERO + month.toString() : month.toString();
     }
 }

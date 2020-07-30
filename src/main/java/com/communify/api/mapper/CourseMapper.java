@@ -53,6 +53,7 @@ public class CourseMapper {
     
     private static Course convertDTOToModel(CourseDTO courseDTO) {
         return of(Course::new)
+            .with(Course::setId, courseDTO.getId())
             .with(Course::setFullname, courseDTO.getFullname())
             .with(Course::setStudents, 
                 ofNullable(courseDTO.getStudents())

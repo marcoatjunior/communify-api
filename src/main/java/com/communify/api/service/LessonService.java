@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.communify.api.contract.ILessonService;
-import com.communify.api.contract.IStudentService;
 import com.communify.api.entity.Lesson;
 import com.communify.api.repository.LessonRepository;
 
@@ -22,9 +21,6 @@ import lombok.Setter;
 @Setter
 public class LessonService implements ILessonService {
 
-    @Autowired
-    private IStudentService studentService;
-    
     @Autowired
     private LessonRepository lessonRepository;
     

@@ -4,6 +4,8 @@ import static com.communify.api.mapper.UserMapper.dtoToModel;
 import static com.communify.api.mapper.UserMapper.modelToDTO;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class UserController {
     @CrossOrigin
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public UserDTO findByClassroom(@RequestParam("email") String email, 
-        HttpServletRequest request) {
+        HttpServletRequest request) throws IOException {
         LogHelper.createOrUpdate(email, request.getRemoteAddr());
         return modelToDTO(getUserService().findByClassroom(email));
     }
