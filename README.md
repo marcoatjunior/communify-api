@@ -20,8 +20,8 @@ Disponível em `https://communify-api.herokuapp.com/swagger-ui.html`
 
 ## Moodle Fake
 
-### endpoint -> /courses
-`
+### endpoint -> courses
+```json
 [
   {
     "fullname": $courseName,
