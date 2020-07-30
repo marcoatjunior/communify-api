@@ -17,3 +17,26 @@ Disponível em `https://communify-api.herokuapp.com`
 ## Documentação
 
 Disponível em `https://communify-api.herokuapp.com/swagger-ui.html`
+
+## Moodle Fake
+
+### endpoint -> /courses
+`
+[
+  {
+    "fullname": $courseName,
+    "students": [
+      {
+        "email": $studentEmail
+      }
+    ],
+    "lessons": [
+      {
+        "name": $lessonName,
+        "deadline": $lessonDeadline,
+        "activityLink": $lessonActivityLink
+      }
+    ]
+  }
+]
+`
