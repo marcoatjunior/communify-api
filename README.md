@@ -24,17 +24,17 @@ Disponível em `https://communify-api.herokuapp.com/swagger-ui.html`
 ```json
 [
   {
-    "fullname": $courseName,
-    "students": [
+    fullname: "courseName",
+    students: [
       {
         "email": $studentEmail
       }
     ],
-    "lessons": [
+    lessons: [
       {
-        "name": $lessonName,
-        "deadline": $lessonDeadline,
-        "activityLink": $lessonActivityLink
+        name: "lessonName",
+        deadline: "lessonDeadline",
+        activityLink: "lessonActivityLink"
       }
     ]
   }
