@@ -4,7 +4,7 @@ Este projeto foi desenvolvido utilizando Spring Boot e tem como objetivo a integ
 
 ## Serve
 
-`mvn spring-boot:run`
+`mvn clean install spring-boot:run`
 
 ## Front-end
 
